@@ -3,6 +3,7 @@ def matmul(A, B):
     print(f"{len(B)=}")
     assert len(A[0]) == len(B)
     N, K, M = len(A), len(A[0]), len(B[0])
+    print(f"{N=}, {K=}, {M=}")
     C = [[0 for m in range(M)] for n in range(N)]
     print(f"{C=}")
     for n in range(N):
