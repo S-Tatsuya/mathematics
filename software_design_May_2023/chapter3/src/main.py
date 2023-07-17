@@ -12,7 +12,7 @@ B = [[2, 0], [0, 2]]
 C = [[0.5, 0], [0, 0.5]]
 
 # 90度回転行列
-D = [[0, 1], [0, 1]]
+D = [[1, 1], [0, 1]]
 
 
 def matmul(A, B):
@@ -54,22 +54,30 @@ def change(points, vectors):
     return new_points
 
 
-def display_result(points, new_points):
+def display_result(points, new_points, vectors):
     fig = plt.figure(figsize=(10, 4))
     subplot = fig.add_subplot(1, 2, 1)
     xs = [x for x, y in points]
     ys = [y for x, y in points]
-    subplot.scatter(xs, ys)
-    subplot.set_xlim((-2, 2))
-    subplot.set_ylim((-2, 2))
+    subplot.scatter(xs, ys, color="g")
+    subplot.scatter(0, 1, color="b")
+    subplot.scatter(1, 0, color="r")
+    subplot.set_xlim((-1, 1))
+    subplot.set_ylim((-1, 1))
+    subplot.hlines(0, -1, 1, color="Black", linestyles="dotted", label="")
+    subplot.vlines(0, -1, 1, color="Black", linestyles="dotted", label="")
     subplot.set_aspect("equal")
 
     subplot = fig.add_subplot(1, 2, 2)
     xs = [x for x, y in new_points]
     ys = [y for x, y in new_points]
-    subplot.scatter(xs, ys)
-    subplot.set_xlim((-2, 2))
-    subplot.set_ylim((-2, 2))
+    subplot.scatter(xs, ys, color="g")
+    subplot.scatter(vectors[0][0], vectors[0][1], color="r")
+    subplot.scatter(vectors[1][0], vectors[1][1], color="b")
+    subplot.set_xlim((-1, 1))
+    subplot.set_ylim((-1, 1))
+    subplot.hlines(0, -1, 1, color="Black", linestyles="dotted", label="")
+    subplot.vlines(0, -1, 1, color="Black", linestyles="dotted", label="")
     subplot.set_aspect("equal")
 
     plt.show()
@@ -82,6 +90,7 @@ def test_matmul():
 
 
 if __name__ == "__main__":
-    points = generate_random_points()
+    # points = generate_random_points()
+    points = [[[0.6], [0.3]]]
     new_points = change(points, A)
-    display_result(points, new_points)
+    display_result(points, new_points, A)
